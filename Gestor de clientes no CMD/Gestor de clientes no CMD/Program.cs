@@ -8,6 +8,15 @@ namespace Gestor_de_clientes_no_CMD
 {
     class Program
     {
+        [System.Serializable] //Transforma os dados em bits
+        struct Cliente //Criando um tipo de dados "Cliente" que recebe varios dados
+        {
+            public string nome;
+            public string email;
+            public string cpf;
+        }
+
+        static List<Cliente> clientes = new List<Cliente>(); //Criando uma lista de clientes que recebe a struct Cliente
         enum Menu //Opções do menu do usuario
         {
             Listagem = 1, Adicionar, Remover, Sair
@@ -23,9 +32,11 @@ namespace Gestor_de_clientes_no_CMD
                 Menu opcao = (Menu)int.Parse(Console.ReadLine());
                 switch (opcao)
                 {
-                    case Menu.Adicionar:
-                        break;
                     case Menu.Listagem:
+                        Listagem();
+                        break;
+                    case Menu.Adicionar:
+                        Adicionar();
                         break;
                     case Menu.Remover:
                         break;
@@ -36,6 +47,51 @@ namespace Gestor_de_clientes_no_CMD
                 Console.Clear();
             }
 
+        }
+        static void Adicionar()
+        {
+            Console.Clear();
+            Cliente cliente = new Cliente(); //Instanciando o cliente
+            Console.WriteLine("__Cadastro de cliente__");
+            Console.WriteLine("Digite o nome do cliente:");
+            cliente.nome = Console.ReadLine();
+            Console.WriteLine("Digite o email do cliente:");
+            cliente.email = Console.ReadLine();
+            Console.WriteLine("Digite o CPF do cliente:");
+            cliente.cpf = Console.ReadLine();
+
+            clientes.Add(cliente);//Adicionando os dados na lista clientes
+            Console.Clear();
+            Console.WriteLine("Cadastro realizado com sucesso!");
+            Console.WriteLine("Aperte enter para voltar ao menu");
+            Console.ReadLine();
+
+        }
+        static void Listagem()
+        {
+            Console.Clear();
+            if (clientes.Count > 0)
+            {
+                Console.WriteLine("Lista de clientes cadastrados:");
+                int contador = 0;
+                foreach (Cliente cliente in clientes)
+                {
+                    Console.WriteLine($"ID: {contador}");
+                    Console.WriteLine($"Nome: {cliente.nome}");
+                    Console.WriteLine($"Email: {cliente.email}");
+                    Console.WriteLine($"CPF: {cliente.cpf}");
+                    Console.WriteLine("==============================");
+                    contador++;
+                }
+                Console.WriteLine("Aperte enter para voltar ao menu");
+                Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine("Nenhum cliente cadastrado!");
+                Console.WriteLine("Aperte enter para voltar ao menu");
+                Console.ReadLine();
+            }
         }
     }
 }
