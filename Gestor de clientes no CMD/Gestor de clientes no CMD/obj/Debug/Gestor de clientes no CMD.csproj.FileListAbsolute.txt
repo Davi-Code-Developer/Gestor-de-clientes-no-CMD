@@ -1,0 +1,7 @@
+C:\Users\davis\Documents\GitHub\Gestor-de-clientes-no-CMD\Gestor de clientes no CMD\Gestor de clientes no CMD\bin\Debug\Gestor de clientes no CMD.exe.config
+C:\Users\davis\Documents\GitHub\Gestor-de-clientes-no-CMD\Gestor de clientes no CMD\Gestor de clientes no CMD\bin\Debug\Gestor de clientes no CMD.exe
+C:\Users\davis\Documents\GitHub\Gestor-de-clientes-no-CMD\Gestor de clientes no CMD\Gestor de clientes no CMD\bin\Debug\Gestor de clientes no CMD.pdb
+C:\Users\davis\Documents\GitHub\Gestor-de-clientes-no-CMD\Gestor de clientes no CMD\Gestor de clientes no CMD\obj\Debug\Gestor de clientes no CMD.csprojAssemblyReference.cache
+C:\Users\davis\Documents\GitHub\Gestor-de-clientes-no-CMD\Gestor de clientes no CMD\Gestor de clientes no CMD\obj\Debug\Gestor de clientes no CMD.csproj.CoreCompileInputs.cache
+C:\Users\davis\Documents\GitHub\Gestor-de-clientes-no-CMD\Gestor de clientes no CMD\Gestor de clientes no CMD\obj\Debug\Gestor de clientes no CMD.exe
+C:\Users\davis\Documents\GitHub\Gestor-de-clientes-no-CMD\Gestor de clientes no CMD\Gestor de clientes no CMD\obj\Debug\Gestor de clientes no CMD.pdb
