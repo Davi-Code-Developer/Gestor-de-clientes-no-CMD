@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Gestor_de_clientes_no_CMD
 {
@@ -23,7 +25,7 @@ namespace Gestor_de_clientes_no_CMD
         }
         static void Main(string[] args)
         {
-
+            Carregar();
             Console.WriteLine("Sistema de gerenciamento de cliente - Digite sua opção:");
             for (bool op = false; op == false;)
             {
@@ -39,6 +41,7 @@ namespace Gestor_de_clientes_no_CMD
                         Adicionar();
                         break;
                     case Menu.Remover:
+                        Remover();
                         break;
                     case Menu.Sair:
                         op = true;
@@ -61,6 +64,7 @@ namespace Gestor_de_clientes_no_CMD
             cliente.cpf = Console.ReadLine();
 
             clientes.Add(cliente);//Adicionando os dados na lista clientes
+            Salvar(); // chama afnção para salvar os novos dados
             Console.Clear();
             Console.WriteLine("Cadastro realizado com sucesso!");
             Console.WriteLine("Aperte enter para voltar ao menu");
@@ -73,7 +77,7 @@ namespace Gestor_de_clientes_no_CMD
             if (clientes.Count > 0)
             {
                 Console.WriteLine("Lista de clientes cadastrados:");
-                int contador = 1;
+                int contador = 0;
                 foreach (Cliente cliente in clientes)
                 {
                     Console.WriteLine($"ID: {contador}");
@@ -90,6 +94,52 @@ namespace Gestor_de_clientes_no_CMD
             {
                 Console.WriteLine("Nenhum cliente cadastrado!");
                 Console.WriteLine("Aperte enter para voltar ao menu");
+                Console.ReadLine();
+            }
+        }
+        static void Salvar()
+        {
+            FileStream stream = new FileStream("Clients.dat",FileMode.OpenOrCreate); //Criando um arquivo com formato binario
+            BinaryFormatter enconder = new BinaryFormatter();
+            enconder.Serialize(stream, clientes); //salvando a lista clientes dentro da stream
+            stream.Close();
+
+        }
+        static void Carregar()
+        {
+            FileStream stream = new FileStream("Clients.dat", FileMode.OpenOrCreate); //Criando um arquivo com formato binario
+            try
+            {
+                
+                BinaryFormatter enconder = new BinaryFormatter();
+                clientes = (List<Cliente>)enconder.Deserialize(stream); //salvando a lista clientes dentro da stream
+                if(clientes == null)
+                {
+                    clientes = new List<Cliente>();
+                }
+            }
+            catch(Exception e)
+            {
+                clientes = new List<Cliente>();
+            }
+            stream.Close();
+        }
+        static void Remover()
+        {
+            Listagem();
+            Console.WriteLine("Digite o ID do cliente para remove-lo");
+            int id = int.Parse(Console.ReadLine());
+            if(id >= 0 && id <= clientes.Count)
+            {
+                clientes.RemoveAt(id);
+                Salvar();
+                Console.WriteLine("Cliente removido com sucesso!");
+                Console.WriteLine("Aperte enter para voltar ao menu");
+                Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine("ID invalido! Digite novamente!");
                 Console.ReadLine();
             }
         }
