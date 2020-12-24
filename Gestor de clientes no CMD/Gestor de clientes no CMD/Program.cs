@@ -73,7 +73,7 @@ namespace Gestor_de_clientes_no_CMD
             if (clientes.Count > 0)
             {
                 Console.WriteLine("Lista de clientes cadastrados:");
-                int contador = 0;
+                int contador = 1;
                 foreach (Cliente cliente in clientes)
                 {
                     Console.WriteLine($"ID: {contador}");
